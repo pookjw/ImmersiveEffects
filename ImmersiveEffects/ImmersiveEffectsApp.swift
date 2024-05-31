@@ -9,13 +9,17 @@ import SwiftUI
 
 @main
 struct ImmersiveEffectsApp: App {
+    @State private var selectedEffect: Effect?
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView(selectedEffect: $selectedEffect)
+            }
         }
 
         ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
+            ImmersiveView(selectedEffect: selectedEffect)
         }.immersionStyle(selection: .constant(.full), in: .mixed)
     }
 }
